@@ -6,7 +6,8 @@ defmodule WallabyPlayground do
     result = session
       |> visit("/")
       |> find(Query.css(".ui-button--large", count: 2))
+      IO.puts("HI")
 
-  click(session, result)
+    click(session, result)
   end
 end
