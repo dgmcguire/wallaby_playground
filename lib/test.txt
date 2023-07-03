@@ -1,3 +1,6 @@
+test
+
+
 defmodule WallabyPlayground do
   use Wallaby.DSL
   require ExUnit.Assertions
@@ -34,7 +37,7 @@ defmodule WallabyPlayground do
 
     #click dual sport helm
     session
-      |> find(Query.xpath("/html/body/div[2]/div[3]/div/div[1]/ul/li[1]/div/div/div[1]/div/ul/li[3]/a[2]"), fn(element) -> Element.click(element) end)
+      |> find(Query.xpath("/html/body/div[2]/div[3]/div/div[1]/ul/li[1]/div/div/div[1]/div/ul/li[3]/a[1]/div/img"), fn(element) -> Element.click(element) end)
 
     # clickon adventure filter
     session
@@ -143,27 +146,17 @@ defmodule WallabyPlayground do
     move_mouse_by(session, 10, 10)
     Browser.double_click(session)
 
-    Process.sleep(10000)
-
-    IO.puts(page_source(session))
-
     session
-      |> find(Query.xpath("/html/body/div[3]/main/form/div/div/div[2]/div/div[1]/div/div[2]/div[2]/div"), fn(element) -> Element.click(element) end)
+      |> Wallaby.Browser.take_screenshot()
 
-    [continueButton | _]  = Browser.all(session, Query.button("Continue"))
-    move_mouse_by(session, 10, -10)
-    Element.click(continueButton)
+    IO.puts(selected?(session, Query.xpath("/html/body/div[3]/main/form/div/div/div[3]/div/div[1]/div[2]/div/input[1]")))
 
     #click(page, Query.radio_button("Radio Button 1"))
-
-    #session |> find(Query.xpath("/html/body/div[2]/div[1]/div/div[1]/a/img"), fn(element) -> Element.click(element) end)
-
 
     Process.sleep(1000)
 
     session
       |> Wallaby.Browser.take_screenshot()
-
 
   end
  end
